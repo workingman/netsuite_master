@@ -1,0 +1,48 @@
+# GWR - best practice? -don't include Objects in git. Use the "import objects" function to get them right from NS.
+#       including them seemed to drag in tons of dependencies into manifest.xml and seemed to want to deploy them all every time.:w
+# src/Objects 
+
+# OK, I changed my mind.  Let's ignore deploy.xml and manifest.xml instead and require devs to populate them with the thing they are working on
+src/manifest.xml
+src/deploy.xml
+
+# IDEs and editors
+.idea
+*.iml
+*.iws
+.project
+.classpath
+*.launch
+.settings
+*.sublime-workspace
+.vscode
+
+# Dependency directories
+node_modules
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Packaged SuiteCloud projects
+build
+
+# misc
+.sass-cache
+
+# Optional npm cache directory
+.npm
+
+# System Files
+.DS_Store
+Thumbs.db
+
+# Output of 'npm pack'
+*.tgz
+
+# Project config
+project.json
