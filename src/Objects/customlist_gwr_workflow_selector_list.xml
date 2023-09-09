@@ -1,0 +1,34 @@
+<customlist scriptid="customlist_gwr_workflow_selector_list">
+  <description>change to snapshot environment</description>
+  <isinactive>F</isinactive>
+  <ismatrixoption>F</ismatrixoption>
+  <isordered>T</isordered>
+  <name>GWR Workflow Selector List</name>
+  <customvalues>
+    <customvalue scriptid="val_54958_t2257815_585">
+      <abbreviation>G</abbreviation>
+      <isinactive>F</isinactive>
+      <value>Green</value>
+    </customvalue>
+    <customvalue scriptid="val_54959_t2257815_717">
+      <abbreviation>R</abbreviation>
+      <isinactive>F</isinactive>
+      <value>Red</value>
+    </customvalue>
+    <customvalue scriptid="val_54960_t2257815_430">
+      <abbreviation>B</abbreviation>
+      <isinactive>F</isinactive>
+      <value>Blue__</value>
+    </customvalue>
+    <customvalue scriptid="val_55058_t2257815_924">
+      <abbreviation>O</abbreviation>
+      <isinactive>F</isinactive>
+      <value>Silver</value>
+    </customvalue>
+    <customvalue scriptid="val_55059_t2257815_653">
+      <abbreviation>P</abbreviation>
+      <isinactive>F</isinactive>
+      <value>Purple</value>
+    </customvalue>
+  </customvalues>
+</customlist>
