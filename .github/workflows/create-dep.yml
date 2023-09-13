@@ -19,7 +19,7 @@ jobs:
           gh_url=$(echo ${{github.event.pull_request.url}} | 
             sed -e 's/^https\:\/\/api\./https\:\/\//' | 
             sed -e 's/github.com\/repos/github.com/' |
-            sed -e 's/\/puls\//\/pull\///' )
+            sed -e 's/\/pulls\//\/pull\//' )
           echo $gh_url
           ./salto-cloud deployment create from-pull-request -E f3b38076-6b87-4cf7-85aa-5ec14b8eb3a1 -u $gh_url |
             grep "https://salto.io" | 
