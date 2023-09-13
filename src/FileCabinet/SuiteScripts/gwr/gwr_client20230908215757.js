@@ -3,19 +3,13 @@
  * @NScriptType ClientScript
  * @NModuleScope SameAccount
  */
-// 20230908-233329
-// 235445
-// 235829
-
+// 20230912-223232
 
 define(['N/log'],
 /**
  * @param{log} log
  */
 function(log) {
-    // 20230908215816
-    // 20230908221742
-    // branch gwr_f2 20230908223218
     /**
      * Function to be executed after page is initialized.
      *
@@ -28,11 +22,6 @@ function(log) {
     function pageInit(scriptContext) {
 
     }
-    // 20230908-224455
-
-    
-
-    // 20230908-231655 alskdjfalskjf
     /**
      * Function to be executed when field is changed.
      *
