@@ -36,8 +36,7 @@ jobs:
              grep "https://app.salto.io" | 
              sed -e 's/^https\:\/\/.*\/deployments\///' > ~/salto/salto_deployment_id.txt
           cat ~/salto/salto_deployment_id.txt
-          echo ${{env.GITHUB_REF}}
-
+          echo $GITHUB_REF
 
         env: 
           SALTO_API_TOKEN: ${{ secrets.SALTO_API_TOKEN }}
