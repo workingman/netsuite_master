@@ -1,0 +1,20 @@
+name: Create deployment when PR opened
+on:
+  pull_request:
+    types:
+      - opened
+      
+jobs:
+  Create:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Salto CLI
+        run: |
+          curl https://cli.salto.io/release/1/linux-x64.tar.gz --output linux-x64.tar.gz
+          tar xvzf linux-x64.tar.gz
+        
+      - name: Create Deployment
+        run: |
+          ./salto-cloud deployment create -E f3b38076-6b87-4cf7-85aa-5ec14b8eb3a1 -b ${{ github.event.pull_request.head.ref }} 
+        env: 
+          SALTO_API_TOKEN: ${{ secrets.SALTO_API_TOKEN }}
