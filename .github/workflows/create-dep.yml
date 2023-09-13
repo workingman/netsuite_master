@@ -30,7 +30,7 @@ jobs:
       - name: Cache deployment ID
         uses: actions/cache@v3
         with:
-          key: ${{gitub.event.pull_request.url}}
+          key: ${{github.event.pull_request.url}}
           path: |
             ~/satlo_deployment_id.txt
             
