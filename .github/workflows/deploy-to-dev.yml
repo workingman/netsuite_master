@@ -8,18 +8,21 @@ jobs:
   if_merged:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
-    steps:
+    steps:      
+      - name: Cache deployment ID
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/satlo_deployment_id.txt
+    
       - name: Install Salto CLI
         run: |
           curl https://cli.salto.io/release/1/linux-x64.tar.gz --output linux-x64.tar.gz
           tar xvzf linux-x64.tar.gz
-      - name: Download deployment ID
-        uses: actions/download-artifact@v3
-        with:
-          name: salto_deployment_id  
       - name: Run Deploy
         run: |
-          dep_id=$(cat satlo_deployment_id.txt)
+          cat ~/salto_deployment_id.txt
+          dep_id=$(cat ~/satlo_deployment_id.txt)
           ./salto-cloud deployment deploy -E f3b38076-6b87-4cf7-85aa-5ec14b8eb3a1 -i $dep_id
         env: 
           SALTO_API_TOKEN: ${{ secrets.SALTO_API_TOKEN }}
