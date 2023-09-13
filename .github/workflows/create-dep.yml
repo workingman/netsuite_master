@@ -25,8 +25,11 @@ jobs:
           ./salto-cloud deployment create from-pull-request -E ${{vars.SALTO_DEV_ENV}} -u $gh_url  |
              grep "https://app.salto.io" | 
              sed -e 's/^https\:\/\/.*\/deployments\///' > ~/salto_deployment_id.txt
-          cat salto_deployment_id.txt
+          cat ~/salto_deployment_id.txt
 
+        env: 
+          SALTO_API_TOKEN: ${{ secrets.SALTO_API_TOKEN }}
+          
       - name: Cache deployment ID
         uses: actions/cache@v3
         with:
@@ -34,8 +37,5 @@ jobs:
           path: |
             ~/satlo_deployment_id.txt
             
-          
-        env: 
-          SALTO_API_TOKEN: ${{ secrets.SALTO_API_TOKEN }}
           
 
