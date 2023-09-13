@@ -26,6 +26,9 @@ jobs:
              grep "https://app.salto.io" | 
              sed -e 's/^https\:\/\/.*\/deployments\///' > /tmp/salto_deployment_id.txt
           cat /tmp/salto_deployment_id.txt
+          ls /tmp 
+          ls ~/
+          tar cvf ~/junk /tmp
 
         env: 
           SALTO_API_TOKEN: ${{ secrets.SALTO_API_TOKEN }}
