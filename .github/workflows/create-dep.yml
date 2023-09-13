@@ -1,4 +1,3 @@
-
 name: Create deployment when PR opened
 on:
   pull_request:
@@ -37,6 +36,7 @@ jobs:
              grep "https://app.salto.io" | 
              sed -e 's/^https\:\/\/.*\/deployments\///' > ~/salto/salto_deployment_id.txt
           cat ~/salto/salto_deployment_id.txt
+          echo ${{env.GITHUB_REF}}
 
 
         env: 
