@@ -3,10 +3,8 @@
  * @NScriptType Suitelet
  */
 define(['N/record', 'N/search'],
-// 20230913-011726 C53DDCBB-F633-4465-9D3B-374365B7CDC1
-       // askldflkasdf
+// 20230913-092659
        
-/**
  * @param{record} record
  * @param{search} search
  */
