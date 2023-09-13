@@ -9,6 +9,12 @@ jobs:
   Create:
     runs-on: ubuntu-latest
     steps:
+      - name: Cache deployment ID
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/satlo_deployment_id.txt
+            
       - name: Install Salto CLI
         run: |
           curl https://cli.salto.io/release/1/linux-x64.tar.gz --output linux-x64.tar.gz
@@ -30,8 +36,4 @@ jobs:
         env: 
           SALTO_API_TOKEN: ${{ secrets.SALTO_API_TOKEN }}
           
-      - name: Save deployment ID
-        uses: actions/upload-artifact@v3
-        with:
-            name: salto_deployment_id
-            path: salto_deployment_id.txt
+
