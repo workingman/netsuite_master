@@ -22,7 +22,7 @@ jobs:
              sed -e 's/^https\:\/\/api\./https\:\/\//' | 
              sed -e 's/github.com\/repos/github.com/' |
              sed -e 's/\/pulls\//\/pull\//' ) 
-          ./salto-cloud deployment create from-pull-request -E ${{variables.SALTO_DEV_ENV}} -u $gh_url  |
+          ./salto-cloud deployment create from-pull-request -E ${{vars.SALTO_DEV_ENV}} -u $gh_url  |
              grep "https://app.salto.io" | 
              sed -e 's/^https\:\/\/.*\/deployments\///' > ~/salto_deployment_id.txt
           cat salto_deployment_id.txt
