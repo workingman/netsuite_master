@@ -23,9 +23,7 @@ jobs:
             sed -e 's/github.com\/repos/github.com/' |
             sed -e 's/\/pulls\//\/pull\//' )
           
-          ./salto-cloud deployment create from-pull-request -E f3b38076-6b87-4cf7-85aa-5ec14b8eb3a1 -u $gh_url |
-            grep "https://salto.io" | 
-            sed -e 's/^https\:\/\/.*\/deployments\///' > salto_deployment_id.txt
+          ./salto-cloud deployment create from-pull-request -E f3b38076-6b87-4cf7-85aa-5ec14b8eb3a1 -u $gh_url
             
           cat salto_deployment_id.txt
         env: 
