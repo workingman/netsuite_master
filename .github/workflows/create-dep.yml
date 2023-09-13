@@ -25,8 +25,9 @@ jobs:
           
           ./salto-cloud deployment create from-pull-request -E f3b38076-6b87-4cf7-85aa-5ec14b8eb3a1 -u $gh_url |
             grep "https://salto.io" | 
-            sed -e 's/^https\:\/\/.*\/deployments\///' |
-            tee salto_deployment_id.txt
+            sed -e 's/^https\:\/\/.*\/deployments\///' > salto_deployment_id.txt
+            
+          cat salto_deployment_id.txt
         env: 
           SALTO_API_TOKEN: ${{ secrets.SALTO_API_TOKEN }}
           
