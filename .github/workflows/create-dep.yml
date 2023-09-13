@@ -1,3 +1,4 @@
+
 name: Create deployment when PR opened
 on:
   pull_request:
@@ -15,15 +16,22 @@ jobs:
         
       - name: Create Deployment
         run: |
-          # command line needs to be able to accept the url format in github.event.pull_request.url, but I will transform it here
+          # Salto command line should to be able to accept the url format in github.event.pull_request.url, 
+          # but I will transform it here until that feature is created
           gh_url=$(echo ${{github.event.pull_request.url}} | 
-            sed -e 's/^https\:\/\/api\./https\:\/\//' | 
-            sed -e 's/github.com\/repos/github.com/' |
-            sed -e 's/\/pulls\//\/pull\//' )
-          echo $gh_url
-          ./salto-cloud deployment create from-pull-request -E f3b38076-6b87-4cf7-85aa-5ec14b8eb3a1 -u $gh_url |
-            grep "https://salto.io" | 
-            sed -e 's/^https\:\/\/.*\/deployments\///' |
-            tee ./salto_deployment_id
+             sed -e 's/^https\:\/\/api\./https\:\/\//' | 
+             sed -e 's/github.com\/repos/github.com/' |
+             sed -e 's/\/pulls\//\/pull\//' ) 
+          ./salto-cloud deployment create from-pull-request -E f3b38076-6b87-4cf7-85aa-5ec14b8eb3a1 -u $gh_url  |
+             grep "https://app.salto.io" | 
+             sed -e 's/^https\:\/\/.*\/deployments\///' > salto_deployment_id.txt
+          cat salto_deployment_id.txt
+          
         env: 
           SALTO_API_TOKEN: ${{ secrets.SALTO_API_TOKEN }}
+          
+      - name: Save deployment ID
+        uses: actions/upload-artifact@v3
+        with:
+            name: salto_deployment_id
+            path: salto_deployment_id.txt
