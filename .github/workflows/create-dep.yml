@@ -32,10 +32,11 @@ jobs:
           
       - name: Cache deployment ID
         uses: actions/cache@v3
+        id: cache-dep-id
+        env:
+          cache-name: cache-deployment-id
         with:
-          key: ${{github.event.pull_request.url}}
+          key: gwr
           path: |
             ~/satlo_deployment_id.txt
-            
-          
 
