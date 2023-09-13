@@ -24,6 +24,6 @@ jobs:
         run: |
           cat ~/salto_deployment_id.txt
           dep_id=$(cat ~/satlo_deployment_id.txt)
-          ./salto-cloud deployment deploy -E ${{variables.SALTO_DEV_ENV}} -i $dep_id
+          ./salto-cloud deployment deploy -E ${{vars.SALTO_DEV_ENV}} -i $dep_id
         env: 
           SALTO_API_TOKEN: ${{ secrets.SALTO_API_TOKEN }}
