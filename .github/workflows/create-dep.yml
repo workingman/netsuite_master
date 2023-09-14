@@ -13,7 +13,7 @@ jobs:
         with:
           key: salto
           path: |
-            ~/salto
+            ~/salto/*
 
       - name: Install Salto CLI
         run: |
