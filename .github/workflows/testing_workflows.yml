@@ -7,13 +7,17 @@ jobs:
   GWR_test:
     runs-on: ubuntu-latest
     steps:
+      - name: Cache Salto Deployment ID
+        uses: actions/cache@v3
+        with:
+          key: gwr20230914-125350
+          path: |
+            ~/salto-*
       - name: gwr_junk
         run: |
-          # gh variable set GWR_TEST --body "Hello"
-          gh api \
-            -H "Accept: application/vnd.github+json" \
-            -H "X-GitHub-Api-Version: 2022-11-28" \
-            /repos/workingman/netsuite_master/actions/variables/DEPL_ID
+          cat ${{ github.event_path	}}
+          touch ~/salto-20230914-125505
+          ls -al ~
         env:
           GH_REPO: workingman/netsuite_master
           GITHUB_TOKEN: ${{ secrets.GWR_GH_TOKEN }}
