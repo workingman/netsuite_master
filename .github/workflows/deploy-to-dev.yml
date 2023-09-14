@@ -14,7 +14,7 @@ jobs:
         with:
           key: salto
           path: |
-            ~/salto
+            ~/salto/*
     
       - name: Install Salto CLI
         run: |
@@ -22,6 +22,7 @@ jobs:
           tar xvzf linux-x64.tar.gz
       - name: Run Deploy
         run: |
+          mkdir ~/salto
           echo ${{github.ref}}
           ls -dl /tmp ~/salto
           ls -al ~/salto
