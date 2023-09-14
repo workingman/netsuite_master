@@ -25,7 +25,7 @@ jobs:
              grep "https://app.salto.io" | 
              sed -e 's/^https\:\/\/.*\/deployments\///' > depl_id.txt
           depl_id=$(cat depl_id.txt)
-          gh variable set DEPL_ID --body $depl_id
+          gh variable set DEPL_ID --body $depl_id --repos ${{ github.repository }}
         env: 
           SALTO_API_TOKEN: ${{ secrets.SALTO_API_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GWR_GH_TOKEN }}
