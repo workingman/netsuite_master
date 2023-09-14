@@ -23,5 +23,7 @@ jobs:
           echo 5 ${{ github.event.repository }}
           echo 6 ${{ github.action_ref }}
           cat ${{ github.event_path	}}
-          ls ~          
+          ls ~ 
+          mkdir ~/salto
+          touch ~/salto/gwr20230914-010041
         
