@@ -25,16 +25,19 @@ jobs:
 
           # Salto command line should to be able to accept the url format in github.event.pull_request.url, 
           # but I will transform it here until that feature is created
-          pr_url=$(echo ${{github.event.pull_request.url}} | 
+          pr_url = $(echo ${{github.event.pull_request.url}} | 
              sed -e 's/^https\:\/\/api\./https\:\/\//' | 
              sed -e 's/github.com\/repos/github.com/' |
              sed -e 's/\/pulls\//\/pull\//' ) 
+             
+          # here we are saving the deployment ID into a file that is cached and available for the merge workflow
+          # NB: in the context of this workflow, github.headref contains the right name. 
+          #     in the context of the merge, github.ref will contain that same information
           ./salto-cloud deployment create from-pull-request -E ${{vars.SALTO_DEV_ENV}} -u $pr_url  |
              grep "https://app.salto.io" | 
              sed -e 's/^https\:\/\/.*\/deployments\///' > ~/salto-${{github.head_ref}}
-             # here we are saving the deployment ID into a file that is cached and available for the merge workflow
-             # NB: in the context of this workflow, github.headref contains the right name. 
-             #     in the context of the merge, github.ref will contain that same information
+
+          #debug:   
           ls -la ~/salto-*
           cat ~/salto-${{github.head_ref}}
              
