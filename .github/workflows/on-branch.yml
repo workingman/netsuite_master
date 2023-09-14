@@ -10,6 +10,12 @@ jobs:
     steps: 
       - name: GWR-Step1
         run: |      
-          echo ${{ github }}
+          echo 1 ${{ github.ref }}
+          echo 2 ${{ github.head_ref }}
+          echo 3 ${{ github.event.ref }}
+          echo 4 ${{ github.event.description }}
+          echo 5 ${{ github.event.repository }}
+          echo 6 ${{ github.action_ref }}
+          cat ${{ github.event_path	}}
 
   
