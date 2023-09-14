@@ -25,7 +25,7 @@ jobs:
 
           # Salto command line should to be able to accept the url format in github.event.pull_request.url, 
           # but I will transform it here until that feature is created
-          pr_url = $(echo ${{github.event.pull_request.url}} | 
+          pr_url=$(echo ${{github.event.pull_request.url}} | 
              sed -e 's/^https\:\/\/api\./https\:\/\//' | 
              sed -e 's/github.com\/repos/github.com/' |
              sed -e 's/\/pulls\//\/pull\//' ) 
