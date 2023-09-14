@@ -17,17 +17,16 @@ jobs:
         run: |
           # Salto command line should to be able to accept the url format in github.event.pull_request.url, 
           # but I will transform it here until that feature is created
-          gh_url=$(echo ${{github.event.pull_request.url}} | 
+          pr_url=$(echo ${{github.event.pull_request.url}} | 
              sed -e 's/^https\:\/\/api\./https\:\/\//' | 
              sed -e 's/github.com\/repos/github.com/' |
              sed -e 's/\/pulls\//\/pull\//' ) 
-          ./salto-cloud deployment create from-pull-request -E ${{vars.SALTO_DEV_ENV}} -u $gh_url  |
-             grep "https://app.salto.io" | 
-             sed -e 's/^https\:\/\/.*\/deployments\///' > depl_id.txt
-          depl_id=$(cat depl_id.txt)
-          gh variable set DEPL_ID --body $depl_id --repos ${{ github.repository }}
+          #./salto-cloud deployment create from-pull-request -E ${{vars.SALTO_DEV_ENV}} -u $pr_url  |
+          #   grep "https://app.salto.io" | 
+          #  sed -e 's/^https\:\/\/.*\/deployments\///' > depl_id.txt
+          #depl_id=$(cat depl_id.txt)
+          echo ${{ github.ref }}
         env: 
           SALTO_API_TOKEN: ${{ secrets.SALTO_API_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GWR_GH_TOKEN }}
           
 
