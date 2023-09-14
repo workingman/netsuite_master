@@ -1,8 +1,6 @@
 name: Create Cache
 on:
-  create:
-    branches:
-      - main
+  workflow_dispatch:
 
 jobs:
   create_cache:
