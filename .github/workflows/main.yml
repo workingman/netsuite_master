@@ -8,6 +8,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: gwr_junk
-        run: gh variable set GWR_TEST --body "Hello"
+        run: |
+          # gh variable set GWR_TEST --body "Hello"
+          gh pr list
         env:
+          GH_REPO = workinman/netsuite_master
           GITHUB_TOKEN: ${{ secrets.GWR_GH_TOKEN }}
