@@ -15,7 +15,6 @@ jobs:
       - name: Cache deployment ID
         uses: actions/cache@v3
         with:
-          ref: refs/pull/38/merge
           key: gwr
           path: |
             ~/salto
