@@ -11,14 +11,13 @@ jobs:
       - name: Cache Salto Deployment ID
         uses: actions/cache@v3
         with:
-          key: salto
+          key: salto-${{github.event.ref}}
           path: |
-            ~/salto
+            ~/salto-*
       - name: create a branch file
         run: |
-          cat ${{ github.event_path	}}
           echo ${{github.ref}}
-          mkdir ~/salto
-          touch ~/salto/${{github.event.ref}}
+          echo ${{github.event.ref}}
+          touch ~/salto-${{github.event.ref}}
 
   
