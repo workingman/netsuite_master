@@ -16,6 +16,7 @@ jobs:
             ~/salto
       - name: create a branch file
         run: |
+          mkdir ~/salto
           touch ~/salto/${{github.event.ref}}
 
   
