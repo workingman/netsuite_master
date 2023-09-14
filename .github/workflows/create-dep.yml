@@ -16,8 +16,6 @@ jobs:
             ~/salto
       - name: Test Cache
         run: |
-          ls ~/salto
-          ls ~
           echo 1 ${{ github.ref }}
           echo 2 ${{ github.head_ref }}
           echo 3 ${{ github.event.ref }}
@@ -25,5 +23,5 @@ jobs:
           echo 5 ${{ github.event.repository }}
           echo 6 ${{ github.action_ref }}
           cat ${{ github.event_path	}}
-          
+          ls ~          
         
