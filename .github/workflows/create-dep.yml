@@ -23,9 +23,8 @@ jobs:
              sed -e 's/\/pulls\//\/pull\//' ) 
           ./salto-cloud deployment create from-pull-request -E ${{vars.SALTO_DEV_ENV}} -u $gh_url  |
              grep "https://app.salto.io" | 
-             sed -e 's/^https\:\/\/.*\/deployments\///' > ~/salto/salto_deployment_id.txt
-          gh variable set DEP_ID --body "$(cat ~/salto/salto_deployment_id.txt)"
-
+             sed -e 's/^https\:\/\/.*\/deployments\///' > ~/salto/salto_deployment_id.txt      
+             gh variable set DEP_ID --body "$(cat ~/salto/salto_deployment_id.txt)"
         env: 
           GITHUB_TOKEN: ${{ secrets.GWR_GH_TOKEN }}
           SALTO_API_TOKEN: ${{ secrets.SALTO_API_TOKEN }}
