@@ -15,7 +15,7 @@ jobs:
       - name: Cache deployment ID
         uses: actions/cache@v3
         with:
-          key: gwr
+          key: salto
           path: |
             ~/salto
     
