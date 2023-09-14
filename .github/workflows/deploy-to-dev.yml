@@ -22,8 +22,10 @@ jobs:
           tar xvzf linux-x64.tar.gz
       - name: Run Deploy
         run: |
-          echo ${{gihub.ref}}
+          echo ${{github.ref}}
+          ls -d ~/salto
           ls ~/salto
+          touch ~/salto/${{github.ref}}
           cat ~/salto/${{github.ref}}
           depl_id=$(cat ~/salto/${{github.ref}})
           ./salto-cloud deployment deploy -E ${{vars.SALTO_DEV_ENV}} -i $depl_id
