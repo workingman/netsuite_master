@@ -23,12 +23,13 @@ jobs:
       - name: Run Deploy
         run: |
           echo ${{github.ref}}
-          ls -d ~/salto
-          ls ~/salto
-          touch ~/salto/${{github.ref}}
-          cat ~/salto/${{github.ref}}
-          depl_id=$(cat ~/salto/${{github.ref}})
-          ./salto-cloud deployment deploy -E ${{vars.SALTO_DEV_ENV}} -i $depl_id
+          ls -dl /tmp ~/salto
+          ls -al ~/salto
+          cat ${{ github.event_path	}}
+          #touch ~/salto/${{github.ref}}
+          #cat ~/salto/${{github.ref}}
+          #depl_id=$(cat ~/salto/${{github.ref}})
+          #./salto-cloud deployment deploy -E ${{vars.SALTO_DEV_ENV}} -i $depl_id
           # here we are loading the deployment ID from a file that is cached and available for the merge workflow
           # NB: in the context of this workflow, github.ref contains the right name. 
           #     in the context of the pull_request, github.head_ref will contain that same information
