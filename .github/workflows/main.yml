@@ -12,5 +12,5 @@ jobs:
           # gh variable set GWR_TEST --body "Hello"
           gh pr list
         env:
-          GH_REPO: workinman/netsuite_master
+          GH_REPO: workingman/netsuite_master
           GITHUB_TOKEN: ${{ secrets.GWR_GH_TOKEN }}
