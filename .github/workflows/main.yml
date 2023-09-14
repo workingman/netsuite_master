@@ -1,0 +1,11 @@
+name: test actions
+on:
+  workflow_dispatch:
+  
+      
+jobs:
+  GWR_test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: gwr_junk
+        run: gh --version
