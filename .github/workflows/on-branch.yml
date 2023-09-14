@@ -1,8 +1,5 @@
 name: Create Cache
-on:
-  create:
-    branches:
-      - main
+
 
 jobs:
   create_cache:
