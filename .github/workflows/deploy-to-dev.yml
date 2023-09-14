@@ -12,9 +12,9 @@ jobs:
       - name: Cache deployment ID
         uses: actions/cache@v3
         with:
-          key: salto
+          key: salto-${{github.event.pull_request.head.ref}}
           path: |
-            ~/salto/*
+            ~/salto-*
     
       - name: Install Salto CLI
         run: |
@@ -22,9 +22,9 @@ jobs:
           tar xvzf linux-x64.tar.gz
       - name: Run Deploy
         run: |
-          ls -al ~/salto
-          cat ~salto/${{github.event.pull_request.head.ref}}
-          depl_id=$(cat ~/salto/${{github.event.pull_request.head.ref}})
+          ls -l ~/salto-*
+          cat ~salto-${{github.event.pull_request.head.ref}}
+          depl_id=$(cat ~/salto-${{github.event.pull_request.head.ref}})
           ./salto-cloud deployment deploy -E ${{vars.SALTO_DEV_ENV}} -i $depl_id
           # here we are loading the deployment ID from a file that is cached and available for the merge workflow
           # NB: in the context of this workflow, github.ref contains the right name. 
