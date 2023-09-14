@@ -25,10 +25,10 @@ jobs:
           echo ${{github.ref}}
           ls -dl /tmp ~/salto
           ls -al ~/salto
-          cat ${{ github.event_path	}}
-          #touch ~/salto/${{github.ref}}
-          #cat ~/salto/${{github.ref}}
-          #depl_id=$(cat ~/salto/${{github.ref}})
+          echo ${{github.event.pull_request.head}}
+          touch ~/salto/${{github.event.pull_request.head}}
+          cat ~/salto/${{github.event.pull_request.head}}
+          depl_id=$(cat ~/salto/${{github.event.pull_request.head}})
           #./salto-cloud deployment deploy -E ${{vars.SALTO_DEV_ENV}} -i $depl_id
           # here we are loading the deployment ID from a file that is cached and available for the merge workflow
           # NB: in the context of this workflow, github.ref contains the right name. 
