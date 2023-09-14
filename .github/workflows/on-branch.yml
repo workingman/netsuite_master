@@ -1,0 +1,15 @@
+name: Create Cache
+on:
+  create:
+    branches:
+      - main
+
+jobs:
+  GWR1:
+    runs-on: ubuntu-latest
+    steps: 
+      - name: GWR-Step1
+        run: |      
+          echo ${{ github }}
+
+  
