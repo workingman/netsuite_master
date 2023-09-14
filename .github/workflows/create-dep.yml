@@ -11,7 +11,7 @@ jobs:
       - name: Cache deployment ID
         uses: actions/cache@v3
         with:
-          key: salto-${{github.head_ref}}
+          key: gwr20230914-125350
           path: |
             ~/salto-*
 
