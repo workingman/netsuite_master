@@ -5,17 +5,16 @@ on:
       - main
 
 jobs:
-  GWR1:
+  create_cache:
     runs-on: ubuntu-latest
-    steps: 
-      - name: GWR-Step1
-        run: |      
-          echo 1 ${{ github.ref }}
-          echo 2 ${{ github.head_ref }}
-          echo 3 ${{ github.event.ref }}
-          echo 4 ${{ github.event.description }}
-          echo 5 ${{ github.event.repository }}
-          echo 6 ${{ github.action_ref }}
-          cat ${{ github.event_path	}}
+    steps:
+      - name: Cache Gradle packages
+        uses: actions/cache@v3
+        with:
+          key: 
+          path: |
+            ~/salto
+    run: |
+      touch ~/salto/${{github.event.ref}}
 
   
