@@ -23,10 +23,8 @@ jobs:
       - name: Run Deploy
         run: |
           mkdir ~/salto
-          touch ~/salto/${{github.event.pull_request.head.ref}}
-          ls -dl /tmp ~/salto
+          echo 'hello world' > ~/salto/${{github.event.pull_request.head.ref}}
           ls -al ~/salto
-          echo 'hello world' > ~/salto/${{github.event.pull_request.head.ref}}/gwr20230914-110212
           #depl_id=$(cat ~/salto/${{github.event.pull_request.head.ref}})
           #./salto-cloud deployment deploy -E ${{vars.SALTO_DEV_ENV}} -i $depl_id
           # here we are loading the deployment ID from a file that is cached and available for the merge workflow
