@@ -11,10 +11,11 @@ jobs:
       - name: Cache Gradle packages
         uses: actions/cache@v3
         with:
-          key: 
+          key: ${{github.event.ref}}
           path: |
             ~/salto
-    run: |
-      touch ~/salto/${{github.event.ref}}
+      - name: create a branch file
+        run: |
+          touch ~/salto/${{github.event.ref}}
 
   
