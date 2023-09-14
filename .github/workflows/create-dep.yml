@@ -22,7 +22,6 @@ jobs:
         
       - name: Create Deployment
         run: |
-          rm ~/salto/*
           # Salto command line should to be able to accept the url format in github.event.pull_request.url, 
           # but I will transform it here until that feature is created
           pr_url=$(echo ${{github.event.pull_request.url}} | 
