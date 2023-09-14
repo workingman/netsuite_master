@@ -11,9 +11,9 @@ jobs:
       - name: Cache deployment ID
         uses: actions/cache@v3
         with:
-          key: salto
+          key: salto-${{github.head_ref}}
           path: |
-            ~/salto/*
+            ~/salto-*
 
       - name: Install Salto CLI
         run: |
@@ -30,15 +30,13 @@ jobs:
              sed -e 's/\/pulls\//\/pull\//' ) 
           ./salto-cloud deployment create from-pull-request -E ${{vars.SALTO_DEV_ENV}} -u $pr_url  |
              grep "https://app.salto.io" | 
-             sed -e 's/^https\:\/\/.*\/deployments\///' > ~/salto/${{github.head_ref}}
+             sed -e 's/^https\:\/\/.*\/deployments\///' > ~/salto-${{github.head_ref}}
              # here we are saving the deployment ID into a file that is cached and available for the merge workflow
              # NB: in the context of this workflow, github.headref contains the right name. 
              #     in the context of the merge, github.ref will contain that same information
-             ls -la ~/salto
-             cat ~/salto/${{github.head_ref}}
-             touch ~/salto
-             ls -la ~/salto
-
+             ls -la ~/salto-*
+             cat ~/salto-${{github.head_ref}}
+             
         env: 
           SALTO_API_TOKEN: ${{ secrets.SALTO_API_TOKEN }}
 
