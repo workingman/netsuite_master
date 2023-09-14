@@ -35,6 +35,7 @@ jobs:
              # NB: in the context of this workflow, github.headref contains the right name. 
              #     in the context of the merge, github.ref will contain that same information
              ls ~/salto
+             cat ~/satlo/${{github.head_ref}}
 
         env: 
           SALTO_API_TOKEN: ${{ secrets.SALTO_API_TOKEN }}
