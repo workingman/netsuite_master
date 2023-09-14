@@ -8,4 +8,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: gwr_junk
-        run: gh --version
+        run: gh variable set GWR_TEST --body "Hello"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GWR_GH_TOKEN }}
