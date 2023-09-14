@@ -1,6 +1,8 @@
 name: Create Cache
 on:
-  workflow_dispatch:
+  create:
+    branches:
+      - main
 
 jobs:
   create_cache:
@@ -14,6 +16,7 @@ jobs:
             ~/salto
       - name: create a branch file
         run: |
+          cat ${{ github.event_path	}}
           echo ${{github.ref}}
           mkdir ~/salto
           touch ~/salto/${{github.event.ref}}
