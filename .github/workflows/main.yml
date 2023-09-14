@@ -10,7 +10,10 @@ jobs:
       - name: gwr_junk
         run: |
           # gh variable set GWR_TEST --body "Hello"
-          gh pr list
+          gh api \
+            -H "Accept: application/vnd.github+json" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            /repos/workingman/netsuite_master/actions/variables/DEPL_ID
         env:
           GH_REPO: workingman/netsuite_master
           GITHUB_TOKEN: ${{ secrets.GWR_GH_TOKEN }}
