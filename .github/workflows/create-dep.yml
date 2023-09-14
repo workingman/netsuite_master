@@ -11,7 +11,7 @@ jobs:
       - name: Cache deployment ID
         uses: actions/cache@v3
         with:
-          key: ${{github.event.ref}}
+          key: ${{github.head_ref}}
           path: |
             ~/salto
       - name: Test Cache
