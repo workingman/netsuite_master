@@ -15,6 +15,11 @@ jobs:
           cat << EOF > tmpfile
           ${{vars.SALTO_DEPL_ID}}
           EOF
+          cat tmpfile
+
+          grep 1 tmpfile
+          x=$(grep 3 tmpfile)
+          printf "$x"
           
         env:
           GITHUB_TOKEN: ${{ secrets.GWR_GH_TOKEN }}
