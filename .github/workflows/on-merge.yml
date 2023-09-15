@@ -21,29 +21,22 @@ jobs:
       - name: Run Deploy
         run: |
 
-          # This variable was created during the preceding workflow when the Salto deployment was created
-          # NB: in the context of this workflow, github.ref contains the right name. 
-          #     in the context of the pull_request, github.head_ref will contain that same information
+          # This variable was created during the preceding workflow when the Salto deployment was created. 
+          # It contains a list of branch:deploymentID pairs for all active branches
           cat << EOF > tmpfile
           ${{vars.SALTO_DEPL_ID}}
           EOF
 
-          #debug
-          cat tmpfile
-          echo 1
-          cat tmpfile | grep "${{github.event.pull_request.head.ref}}" 
-          echo 2
-          cat tmpfile | grep "${{github.event.pull_request.head.ref}}" | sed -e 's/^${{github.event.pull_request.head.ref}}\://'
-          echo 3
-
-          depl_id=$(cat tmpfile | grep "${{github.event.pull_request.head.ref}}" | sed -e 's/^${{github.event.pull_request.head.ref}}\://')
-          
-          # debug
-          echo "__ $depl_id __"
+          # NB: in the context of this workflow, github.event.pull_request.head.ref contains the right name. 
+          #     in the context of the pull_request, github.head_ref will contain that same information
+          depl_id=$(grep "${{github.event.pull_request.head.ref}}" tmpfile | sed -e 's/^${{github.event.pull_request.head.ref}}\://')
           
           ./salto-cloud deployment deploy -i $depl_id
 
-          # I could clean up vars.SALTO_DEPL_ID here with "grep -v" and "gh variable set"
+          # clean up vars.SALTO_DEPL_ID so it doesn't grow forever
+          body=$(grep -v "${{github.event.pull_request.head.ref}}" tmpfile)
+          gh variable set SALTO_DEPL_ID --body "$body"
 
         env: 
           SALTO_API_TOKEN: ${{ secrets.SALTO_API_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GWR_GH_TOKEN }}
