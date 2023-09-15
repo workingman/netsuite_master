@@ -37,6 +37,10 @@ jobs:
           body=$(grep -v "${{github.event.pull_request.head.ref}}" tmpfile)
           gh variable set SALTO_DEPL_ID --body "$body"
 
+      - name: Create Deployment in UAT
+        run:
+          ./satlo-cloud deploy create from-deployments -E ${{vars.SALTO_UAT_ENV}} -i $depl_id
+
         env: 
           SALTO_API_TOKEN: ${{ secrets.SALTO_API_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GWR_GH_TOKEN }}
