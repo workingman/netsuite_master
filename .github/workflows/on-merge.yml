@@ -31,6 +31,7 @@ jobs:
           #     in the context of the pull_request, github.head_ref will contain that same information
           depl_id=$(grep "${{github.event.pull_request.head.ref}}" tmpfile | sed -e 's/^${{github.event.pull_request.head.ref}}\://')
           
+          # run Salto deployment
           ./salto-cloud deployment deploy -i $depl_id
 
           # clean up vars.SALTO_DEPL_ID so it doesn't grow forever
@@ -38,7 +39,10 @@ jobs:
           gh variable set SALTO_DEPL_ID --body "$body"
 
           # create the same deployment in UAT
-          ./salto-cloud deployment create from-deployments -E ${{vars.SALTO_UAT_ENV}} -i $depl_id
+          ./salto-cloud deployment create from-deployments \
+            -E ${{vars.SALTO_UAT_ENV}} \
+            -i $depl_id \
+            -n "${{github.event.pull_request.head.ref}}"  # *** improve the naming scheme, look in ${{vars...}}
 
         env: 
           SALTO_API_TOKEN: ${{ secrets.SALTO_API_TOKEN }}
