@@ -35,7 +35,7 @@ jobs:
           #     in the context of the merge, github.ref will contain that same information
           pr_id=$(echo ${{github.head_ref}}|sed -e 's/\-/_/g')
           depl_id=$(cat ~/deployment_id.txt)
-          body=$(echo "$pr_id:$depl_id\r${{vars.SALTO_DEPL_ID}}")
+          body=$(echo "$pr_id:$depl_id\n${{vars.SALTO_DEPL_ID}}")
 
           #debug
           echo "$pr_id __ $depl_id"
