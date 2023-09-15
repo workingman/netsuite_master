@@ -28,7 +28,14 @@ jobs:
           ${{vars.SALTO_DEPL_ID}}
           EOF
 
-          depl_id=$(grep ${{github.event.pull_request.head.ref}} tmpfile | sed -e 's/${{github.event.pull_request.head.ref}}\://')
+          #debug
+          echo 1
+          grep "${{github.event.pull_request.head.ref}}" tmpfile
+          echo 2
+          grep "${{github.event.pull_request.head.ref}}" tmpfile | sed -e 's/^${{github.event.pull_request.head.ref}}\://'
+          echo 3
+
+          depl_id=$(grep "${{github.event.pull_request.head.ref}}" tmpfile | sed -e 's/^${{github.event.pull_request.head.ref}}\://')
           
           # debug
           echo "__ $depl_id __"
