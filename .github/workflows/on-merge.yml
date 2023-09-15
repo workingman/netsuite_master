@@ -24,11 +24,12 @@ jobs:
           # This variable was created during the preceding workflow when the Salto deployment was created
           # NB: in the context of this workflow, github.ref contains the right name. 
           #     in the context of the pull_request, github.head_ref will contain that same information
-          cat <<EOF >tmpfile
+          cat << EOF > tmpfile
           ${{vars.SALTO_DEPL_ID}}
           EOF
 
           #debug
+          cat tmpfile
           echo 1
           grep "${{github.event.pull_request.head.ref}}" tmpfile
           echo 2
