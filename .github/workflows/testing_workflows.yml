@@ -14,7 +14,7 @@ jobs:
         run: |
           #cat ${{ github.event_path	}}
           ls -al 
-          echo ${{vars.DEPL_ID2}}
+          echo "${{vars.DEPL_ID2}}"
           echo ____
           echo ${{vars.DEPL_ID2}}| grep test2
           

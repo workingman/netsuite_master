@@ -28,7 +28,6 @@ jobs:
           varname=$(echo ${{github.ref}}|sed -e 's/\-/_/g')
           varname=SALTO_${varname}
           
-          
           echo $varname
           echo $depl_id
           
