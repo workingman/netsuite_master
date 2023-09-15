@@ -17,7 +17,7 @@ jobs:
           EOF
           cat tmpfile
 
-          grep 1 tmpfile
+          grep "${{vars. tmpfile
           x=$(grep 3 tmpfile)
           printf "$x"
           
