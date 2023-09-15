@@ -31,12 +31,13 @@ jobs:
           #debug
           cat tmpfile
           echo 1
-          grep "${{github.event.pull_request.head.ref}}" tmpfile
+          cat tmpfile | grep ${{github.event.pull_request.head.ref}}
+          cat tmpfile | grep "${{github.event.pull_request.head.ref}}" 
           echo 2
-          grep "${{github.event.pull_request.head.ref}}" tmpfile | sed -e 's/^${{github.event.pull_request.head.ref}}\://'
+          cat tmpfile | grep "${{github.event.pull_request.head.ref}}" | sed -e 's/^${{github.event.pull_request.head.ref}}\://'
           echo 3
 
-          depl_id=$(grep "${{github.event.pull_request.head.ref}}" tmpfile | sed -e 's/^${{github.event.pull_request.head.ref}}\://')
+          depl_id=$(cat tmpfile | grep "${{github.event.pull_request.head.ref}}" | sed -e 's/^${{github.event.pull_request.head.ref}}\://')
           
           # debug
           echo "__ $depl_id __"
