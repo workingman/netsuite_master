@@ -21,22 +21,26 @@ jobs:
       - name: Run Deploy
         run: |
 
-          # This variable was created during the preceding workflow when the Salto deployment was created. 
+          # This GHA variable was created during the preceding workflow when the Salto deployment was created. 
           # It contains a list of branch:deploymentID pairs for all active branches
           cat << EOF > tmpfile
           ${{vars.SALTO_DEPL_ID}}
           EOF
 
-          # NB: in the context of this workflow, github.event.pull_request.head.ref contains the right name. 
+          # NB: in the context of this workflow, github.event.pull_request.head.ref contains the name of the branch. 
           #     in the context of the pull_request, github.head_ref will contain that same information
           depl_id=$(grep "${{github.event.pull_request.head.ref}}" tmpfile | sed -e 's/^${{github.event.pull_request.head.ref}}\://')
           
           # run Salto deployment
           ./salto-cloud deployment deploy -i $depl_id
 
-          # clean up vars.SALTO_DEPL_ID so it doesn't grow forever
+          # clean up vars.SALTO_DEPL_ID so it doesn't grow forever.  There is still a risk here that if this doesn't get run (if the
+          # deployment fails, for example), then the GHA variable will grow too large.  Improvement needed.
           body=$(grep -v "${{github.event.pull_request.head.ref}}" tmpfile)
           gh variable set SALTO_DEPL_ID --body "$body"
+
+          # we should break this up into different GHA steps.  But then the env vars go away so I will need to
+          # save the depl_id to a file and re-read it in the next step.
 
           # create the same deployment in UAT
           ./salto-cloud deployment create from-deployments \
