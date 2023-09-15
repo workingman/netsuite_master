@@ -7,17 +7,15 @@ jobs:
   GWR_test:
     runs-on: ubuntu-latest
     steps:
-      - name: Cache Salto Deployment ID
-        uses: actions/cache@v3
-        with:
-          key: gwr20230914-125350
-          path: |
-            ~/salto-*
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
       - name: gwr_junk
         run: |
+          ls -al
           cat ${{ github.event_path	}}
           touch ~/salto-20230914-125505
-          ls -al ~
+          ls -al 
         env:
           GH_REPO: workingman/netsuite_master
           GITHUB_TOKEN: ${{ secrets.GWR_GH_TOKEN }}
