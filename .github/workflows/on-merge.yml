@@ -21,14 +21,12 @@ jobs:
       - name: Run Deploy
         run: |
 
-          # This file was created during the preceding workflow when the Salto deployment was created
-          # here we are loading the deployment ID from a file that is cached and available for the merge workflow
+          # This variable was created during the preceding workflow when the Salto deployment was created
           # NB: in the context of this workflow, github.ref contains the right name. 
           #     in the context of the pull_request, github.head_ref will contain that same information
-          varname=$(echo ${{github.ref}}|sed -e 's/\-/_/g')
-          varname=SALTO_${varname}
+          depl_id=$(echo ${{vars.SALTO_DEPL_ID}} | grep ${{github.ref}} )
           
-          echo $varname
+          # debug
           echo $depl_id
           
           ./salto-cloud deployment deploy -E ${{vars.SALTO_DEV_ENV}} -i $depl_id

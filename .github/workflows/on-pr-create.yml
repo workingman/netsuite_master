@@ -37,6 +37,9 @@ jobs:
           depl_id=$(cat ~/deployment_id.txt)
           body=$(printf "$pr_id:$depl_id\n${{vars.SALTO_DEPL_ID}}")
 
+          # *********
+          # cleanup required here - ensure the length of the GHA variable stays small - save the last N entries, determine N
+
           #debug
           echo "$pr_id __ $depl_id"
           echo "$body"
