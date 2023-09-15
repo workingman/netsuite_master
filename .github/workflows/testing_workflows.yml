@@ -12,10 +12,9 @@ jobs:
 
       - name: gwr_junk
         run: |
-          ls -al 
-          echo "${{vars.DEPL_ID2}}"
-          echo ____
-          echo "${{vars.DEPL_ID2}}" | grep test2
+          cat << EOF > tmpfile
+          ${{vars.SALTO_DEPL_ID}}
+          EOF
           
         env:
           GITHUB_TOKEN: ${{ secrets.GWR_GH_TOKEN }}
