@@ -41,7 +41,7 @@ jobs:
           # debug
           echo "__ $depl_id __"
           
-          ./salto-cloud deployment deploy -E ${{vars.SALTO_DEV_ENV}} -i $depl_id
+          ./salto-cloud deployment deploy -i $depl_id
 
           # I could clean up vars.SALTO_DEPL_ID here with "grep -v" and "gh variable set"
 
