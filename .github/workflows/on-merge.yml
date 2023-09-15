@@ -31,7 +31,6 @@ jobs:
           #debug
           cat tmpfile
           echo 1
-          cat tmpfile | grep ${{github.event.pull_request.head.ref}}
           cat tmpfile | grep "${{github.event.pull_request.head.ref}}" 
           echo 2
           cat tmpfile | grep "${{github.event.pull_request.head.ref}}" | sed -e 's/^${{github.event.pull_request.head.ref}}\://'
