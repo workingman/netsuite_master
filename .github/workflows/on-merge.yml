@@ -38,7 +38,7 @@ jobs:
           gh variable set SALTO_DEPL_ID --body "$body"
 
           # create the same deployment in UAT
-          ./salto-cloud deploy create from-deployments -E ${{vars.SALTO_UAT_ENV}} -i $depl_id
+          ./salto-cloud deployment create from-deployments -E ${{vars.SALTO_UAT_ENV}} -i $depl_id
 
         env: 
           SALTO_API_TOKEN: ${{ secrets.SALTO_API_TOKEN }}
