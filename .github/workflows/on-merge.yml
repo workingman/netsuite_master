@@ -31,5 +31,7 @@ jobs:
           
           ./salto-cloud deployment deploy -E ${{vars.SALTO_DEV_ENV}} -i $depl_id
 
+          # I could clean up vars.SALTO_DEPL_ID here with "grep -v" and "gh variable set"
+
         env: 
           SALTO_API_TOKEN: ${{ secrets.SALTO_API_TOKEN }}
