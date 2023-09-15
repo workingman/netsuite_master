@@ -14,6 +14,7 @@ jobs:
         run: |
           #cat ${{ github.event_path	}}
           ls -al 
+          echo ${{vars}}
           gh variable set DEPL_ID2 --body "test"
         env:
           GITHUB_TOKEN: ${{ secrets.GWR_GH_TOKEN }}
