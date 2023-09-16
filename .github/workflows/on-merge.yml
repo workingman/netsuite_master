@@ -33,7 +33,7 @@ jobs:
           depl_id=$(grep "${{github.event.pull_request.head.ref}}" tmpfile | sed -e 's/^${{github.event.pull_request.head.ref}}\://')
 
           #save the deployment ID to a file so I can use it in the next step
-          cat "$depl_id" > depl_id
+          echo "$depl_id" > deployment_id.txt
           
           # run Salto deployment
           ./salto-cloud deployment deploy -i $depl_id
@@ -47,13 +47,10 @@ jobs:
         run: |
 
           # get deployment ID from previous step
-          depl_id="$(cat depl_id)"
+          depl_id="$(cat deployment_id.txt)"
 
           body=$(grep -v "${{github.event.pull_request.head.ref}}" tmpfile)
           gh variable set SALTO_DEPL_ID --body "$body"
-
-          # get deployment ID from previous step
-          depl_id="$(cat depl_id)"
 
       - name: Create Deployment in UAT
         env: 
@@ -62,7 +59,7 @@ jobs:
         run: |
 
           # get deployment ID from previous step
-          depl_id="$(cat depl_id)"
+          depl_id="$(cat deployment_id.txt)"
 
           ./salto-cloud deployment create from-deployments \
             -E ${{vars.SALTO_UAT_ENV}} \
