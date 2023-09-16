@@ -46,9 +46,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GWR_GH_TOKEN }}
         run: |
 
-          # get deployment ID from previous step
-          depl_id="$(cat deployment_id.txt)"
-
           body=$(grep -v "${{github.event.pull_request.head.ref}}" tmpfile)
           gh variable set SALTO_DEPL_ID --body "$body"
 
@@ -61,6 +58,7 @@ jobs:
           # get deployment ID from previous step
           depl_id="$(cat deployment_id.txt)"
 
+          # interestingly, we could use 'from-pull-request' here instead.  think about this
           ./salto-cloud deployment create from-deployments \
             -E ${{vars.SALTO_UAT_ENV}} \
             -i $depl_id \

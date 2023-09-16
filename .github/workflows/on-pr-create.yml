@@ -5,7 +5,7 @@ on:
       - opened
       
 jobs:
-  Create:
+  Create-Deployment:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
