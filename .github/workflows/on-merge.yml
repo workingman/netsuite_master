@@ -58,6 +58,9 @@ jobs:
           # get deployment ID from previous step
           depl_id="$(cat deployment_id.txt)"
 
+          # debug
+          cat ${{ github.event_path	}}
+
           # interestingly, we could use 'from-pull-request' here instead.  think about this
           ./salto-cloud deployment create from-deployments \
             -E ${{vars.SALTO_UAT_ENV}} \
