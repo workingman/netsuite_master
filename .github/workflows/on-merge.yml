@@ -65,5 +65,5 @@ jobs:
           ./salto-cloud deployment create from-deployments \
             -E ${{vars.SALTO_UAT_ENV}} \
             -i $depl_id \
-            -n "${{github.event.pull_request.head.ref}}"  # *** improve the naming scheme, look in vars context variable
+            -n "${{github.event.pull_request.title}}"  # *** improve the naming scheme, look in vars context variable
 
