@@ -5,6 +5,7 @@
 define(['N/record', 'N/search'],
 
 // 20230915-191826
+  //     20230919-145638
 
        // geoff's changes
        
@@ -22,7 +23,7 @@ define(['N/record', 'N/search'],
          * @since 2015.2
          */
 
-        const onRequest = (scriptContext) => {
+        const onRequest = (scriptContext) => { // more code from geoff
 //kgr code
 
         }
