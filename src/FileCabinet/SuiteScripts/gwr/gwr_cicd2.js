@@ -5,12 +5,15 @@
 define(['N/record', 'N/search'],
 
 // 20230915-191826
+
+       // geoff's changes
        
 /*     
  * @param{record} record
  * @param{search} search
  */
     (record, search) => {
+           
         /**
          * Defines the Suitelet script trigger point.
          * @param {Object} scriptContext
@@ -18,7 +21,7 @@ define(['N/record', 'N/search'],
          * @param {ServerResponse} scriptContext.response - Suitelet response
          * @since 2015.2
          */
-        const onRequest = (scriptContext) => {
+        const onRequest = (scriptContext) => { // geoff's code
 
         }
 
