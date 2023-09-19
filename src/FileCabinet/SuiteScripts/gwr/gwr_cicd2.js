@@ -21,7 +21,9 @@ define(['N/record', 'N/search'],
          * @param {ServerResponse} scriptContext.response - Suitelet response
          * @since 2015.2
          */
-        const onRequest = (scriptContext) => { // geoff's code
+
+        const onRequest = (scriptContext) => {
+//kgr code
 
         }
 
