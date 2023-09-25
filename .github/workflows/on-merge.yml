@@ -22,46 +22,26 @@ jobs:
           SALTO_API_TOKEN: ${{ secrets.SALTO_API_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GWR_GH_TOKEN }}
         run: |
-
-          # This GHA variable was created during the preceding workflow when the Salto deployment was created. 
-          # It contains a list of branch:deploymentID pairs for all active branches
-          cat << EOF > tmpfile
-          ${{vars.SALTO_DEPL_ID}}
-          EOF
-
-          # parse the branch:deploymentID pairs to find this pull request's branch and the corresponding deployment ID
-          depl_id=$(grep "${{github.event.pull_request.head.ref}}" tmpfile | sed -e 's/^${{github.event.pull_request.head.ref}}\://')
-
+          depl_id=$(gh pr view ${{ github.event.pull_request.number }} --json comments -q '.comments[0].body' | 
+            awk '{print $2}')
+        
           #save the deployment ID to a file so I can use it in the next step
           echo "$depl_id" > deployment_id.txt
           
           # run Salto deployment
           ./salto-cloud deployment deploy -i $depl_id
 
-      # clean up vars.SALTO_DEPL_ID so it doesn't grow forever.  There is still a risk here that if this doesn't get run (if the
-      # deployment fails, for example), then the GHA variable will grow too large.  Improvement needed.
-      - name: Clean up GHA variable
-        env: 
-          SALTO_API_TOKEN: ${{ secrets.SALTO_API_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GWR_GH_TOKEN }}
-        run: |
-
-          body=$(grep -v "${{github.event.pull_request.head.ref}}" tmpfile)
-          gh variable set SALTO_DEPL_ID --body "$body"
-
       - name: Create Deployment in UAT
         env: 
           SALTO_API_TOKEN: ${{ secrets.SALTO_API_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GWR_GH_TOKEN }}
         run: |
-
-          # get deployment ID from previous step
-          depl_id="$(cat deployment_id.txt)"
+          depl_id="$(cat deployment_id.txt)"   # get deployment ID from previous step
 
           # debug
           cat ${{ github.event_path	}}
 
-          # interestingly, we could use 'from-pull-request' here instead.  think about this
+          # interestingly, we could use 'from-pull-request' here instead.  think about this, could help with merge conflict?
           ./salto-cloud deployment create from-deployments \
             -E ${{vars.SALTO_UAT_ENV}} \
             -i $depl_id \
