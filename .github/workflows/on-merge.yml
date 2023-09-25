@@ -23,7 +23,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GWR_GH_TOKEN }}
         run: |
           depl_id=$(gh pr view ${{ github.event.pull_request.number }} --json comments -q '.comments[0].body' | 
-            awk '{print $2}')
+            awk -F ":" '{print $2}')
         
           #save the deployment ID to a file so I can use it in the next step
           echo "$depl_id" > deployment_id.txt
