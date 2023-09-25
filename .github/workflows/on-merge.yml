@@ -23,9 +23,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GWR_GH_TOKEN }}
         run: |
           depl_id=$(gh pr view ${{ github.event.pull_request.number }} --json comments -q '.comments[0].body') 
-          
-          #save the deployment ID to a file so I can use it in the next step
-          echo "$depl_id" > deployment_id.txt  
+          # this line grabs the deployment ID from the first comment on the PR (created by the previous workflow)
           
           ./salto-cloud deployment deploy -i $depl_id --push
 
@@ -34,11 +32,12 @@ jobs:
           SALTO_API_TOKEN: ${{ secrets.SALTO_API_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GWR_GH_TOKEN }}
         run: |
-          depl_id="$(cat deployment_id.txt)"   # get deployment ID from previous step
+          depl_id=$(gh pr view ${{ github.event.pull_request.number }} --json comments -q '.comments[0].body') 
 
-          # interestingly, we could use 'from-pull-request' here instead.  think about this, could help with merge conflict?
           ./salto-cloud deployment create from-deployments \
             -E ${{vars.SALTO_UAT_ENV}} \
             -i $depl_id \
             -n "${{github.event.pull_request.title}}"  # *** improve the naming scheme, look in vars context variable
+          # interestingly, we could use 'from-pull-request' here instead.  think about this, could help with merge conflict?
+          # There might be trouble since the PR is closed. Not sure if I can use a closed PR as a source.
 
