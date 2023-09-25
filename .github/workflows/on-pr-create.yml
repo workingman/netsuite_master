@@ -35,6 +35,4 @@ jobs:
         env: 
           GITHUB_TOKEN: ${{ secrets.GWR_GH_TOKEN }}
         run: |
-          pr_id="${{github.event.pull_request.head.ref}}"
-          depl_id=$(cat ~/deployment_id.txt)
-          gh pr comment ${{ github.event.pull_request.number }} --body "${pr_id}:${depl_id}"
+          gh pr comment ${{ github.event.pull_request.number }} --body "$(cat ~/deployment_id.txt)"
