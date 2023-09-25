@@ -27,7 +27,7 @@ jobs:
           #save the deployment ID to a file so I can use it in the next step
           echo "$depl_id" > deployment_id.txt  
           
-          ./salto-cloud deployment deploy -i $depl_id 
+          ./salto-cloud deployment deploy -i $depl_id --push
 
       - name: Create Deployment in UAT
         env: 
@@ -38,7 +38,6 @@ jobs:
 
           # interestingly, we could use 'from-pull-request' here instead.  think about this, could help with merge conflict?
           ./salto-cloud deployment create from-deployments \
-            --push \
             -E ${{vars.SALTO_UAT_ENV}} \
             -i $depl_id \
             -n "${{github.event.pull_request.title}}"  # *** improve the naming scheme, look in vars context variable
