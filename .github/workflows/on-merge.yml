@@ -22,7 +22,7 @@ jobs:
           SALTO_API_TOKEN: ${{ secrets.SALTO_API_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GWR_GH_TOKEN }}
         run: |
-          depl_id=$(gh pr view ${{ github.event.pull_request.number }} --json comments -q '.comments[0].body' 
+          depl_id=$(gh pr view ${{ github.event.pull_request.number }} --json comments -q '.comments[0].body') 
           
           #save the deployment ID to a file so I can use it in the next step
           echo "$depl_id" > deployment_id.txt  
