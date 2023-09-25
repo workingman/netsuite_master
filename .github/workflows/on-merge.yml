@@ -22,14 +22,12 @@ jobs:
           SALTO_API_TOKEN: ${{ secrets.SALTO_API_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GWR_GH_TOKEN }}
         run: |
-          depl_id=$(gh pr view ${{ github.event.pull_request.number }} --json comments -q '.comments[0].body' | 
-            awk -F ":" '{print $2}')
-        
-          #save the deployment ID to a file so I can use it in the next step
-          echo "$depl_id" > deployment_id.txt
+          depl_id=$(gh pr view ${{ github.event.pull_request.number }} --json comments -q '.comments[0].body' 
           
-          # run Salto deployment
-          ./salto-cloud deployment deploy -i $depl_id
+          #save the deployment ID to a file so I can use it in the next step
+          echo "$depl_id" > deployment_id.txt  
+          
+          ./salto-cloud deployment deploy -i $depl_id 
 
       - name: Create Deployment in UAT
         env: 
@@ -37,9 +35,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GWR_GH_TOKEN }}
         run: |
           depl_id="$(cat deployment_id.txt)"   # get deployment ID from previous step
-
-          # debug
-          cat ${{ github.event_path	}}
 
           # interestingly, we could use 'from-pull-request' here instead.  think about this, could help with merge conflict?
           ./salto-cloud deployment create from-deployments \
