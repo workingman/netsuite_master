@@ -1,0 +1,19 @@
+<customlist scriptid="customlist_gwr_list2">
+  <description></description>
+  <isinactive>F</isinactive>
+  <ismatrixoption>F</ismatrixoption>
+  <isordered>T</isordered>
+  <name>gwr list 2</name>
+  <customvalues>
+    <customvalue scriptid="val_57873_t2257815_516">
+      <abbreviation>y</abbreviation>
+      <isinactive>F</isinactive>
+      <value>yes</value>
+    </customvalue>
+    <customvalue scriptid="val_57874_t2257815_603">
+      <abbreviation>n</abbreviation>
+      <isinactive>F</isinactive>
+      <value>no</value>
+    </customvalue>
+  </customvalues>
+</customlist>
