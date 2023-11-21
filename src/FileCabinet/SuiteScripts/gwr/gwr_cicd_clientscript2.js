@@ -4,8 +4,11 @@
  * @NModuleScope SameAccount
  */
 
-//20230913-114414E1A515D9-85CE-4122-BABF-CB7DB3907BD0
+// gwr 20231121-103343
+// 20231121-103834
+// 20231121-104726
 
+// 20231121-105314
 define(['N/record', 'N/search'],
 /**
  * @param{record} record

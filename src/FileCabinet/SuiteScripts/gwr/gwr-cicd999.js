@@ -2,15 +2,17 @@
  * @NApiVersion 2.1
  * @NScriptType Suitelet
  */
-// 20231109-232726gr
-// 20231109-235113gr
-// 20231109-235155gr
-// 20231110-001140gr
-define(['N/log'],
-    /**
- * @param{log} log
+define(['N/record', 'N/search'],
+
+ // gwr 20231120-115645     km 
+       
+/*     
+ * @param{record} record
+ * @param{search} search
  */
-    (log) => {
+    (record, search) => {
+// 20231120-123438 km
+
         /**
          * Defines the Suitelet script trigger point.
          * @param {Object} scriptContext
@@ -18,10 +20,10 @@ define(['N/log'],
          * @param {ServerResponse} scriptContext.response - Suitelet response
          * @since 2015.2
          */
-        const onRequest = (scriptContext) => {
-            const b = 22
+        const onRequest = (scriptContext) => { // more code from geoff
         }
-
+// 20231120-114231 km update
+     // gr update 20231120-123316
         return {onRequest}
 
     });

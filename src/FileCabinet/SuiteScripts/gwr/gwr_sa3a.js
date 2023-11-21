@@ -2,13 +2,18 @@
  * @NApiVersion 2.1
  * @NScriptType Suitelet
  */
+// km code 20231117-010031
 define(['N/log'],
     /**
  * @param{log} log
  */
 
     // 20230927-004446
-       // 20231102-142207 
+
+       // 20231102-142207km 20231117-003235 km
+       // 20231110-123137km 20231117-003237
+       // 20231116-234542km 20231117-003240
+
     (log) => {
         /**
          * Defines the Suitelet script trigger point.
@@ -20,6 +25,7 @@ define(['N/log'],
         const onRequest = (scriptContext) => {
 
         }
+        // gr code 20231117-010007
 
         return {onRequest}
 
