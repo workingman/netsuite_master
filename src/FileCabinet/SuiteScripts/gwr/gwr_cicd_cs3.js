@@ -22,7 +22,7 @@ function(record, search) {
     function pageInit(scriptContext) {
 
     }
-aaa
+
     /**
      * Function to be executed when field is changed.
      *
