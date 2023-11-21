@@ -6,6 +6,7 @@
 
 // gwr 20231121-103343
 // 20231121-103834
+// 20231121-104726
 define(['N/record', 'N/search'],
 /**
  * @param{record} record
