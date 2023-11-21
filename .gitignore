@@ -2,9 +2,6 @@
 #       including them seemed to drag in tons of dependencies into manifest.xml and seemed to want to deploy them all every time.:w
 # src/Objects 
 
-# OK, I changed my mind.  Let's ignore deploy.xml and manifest.xml instead and require devs to populate them with the thing they are working on
-src/manifest.xml
-src/deploy.xml
 
 # IDEs and editors
 .idea
