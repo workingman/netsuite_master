@@ -1,6 +1,6 @@
 <deploy>
     <files>
-        <path>~/FileCabinet/gwr/*</path>
+        <path>~/FileCabinet/SuiteScripts/gwr/*</path>
     </files>
     <objects>
         <path>~/Objects/*</path>
