@@ -17,7 +17,7 @@ define(['N/log'],
          */
         const onRequest = (scriptContext) => {
             const a = 2
-            const x = "20231129-121723"
+            const x = "20231129-122244-121723"
             workflow.get({ name: 'custbody_aw_second_lvl_approval' })
        }
         return {onRequest}
