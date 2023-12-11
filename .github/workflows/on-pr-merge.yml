@@ -21,4 +21,5 @@ jobs:
         env: 
           SALTO_API_TOKEN: ${{ secrets.SALTO_API_TOKEN }}
         run: |
+           cat ${{ github.event_path }}
            ./salto-cloud deployment deploy -b ${{ github.branches_url }} --push          
